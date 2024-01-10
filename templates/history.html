@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Баланс: {{ total }} <br><br>
+<hr>
+Карты: <br>
+{% for card in user_cards %}
+    Номер карты: {{ card.card_number }} <br>
+    Баланс: {{ card.balance }}
+    <br>
+    <br>
+{% endfor %}
+
+<hr>
+История платежей: {{ history }}
+
+</body>
+</html>

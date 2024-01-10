@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>transfer</title>
+</head>
+<body>
+{% if message %}
+    <h3>{{ message }}</h3>
+{% endif %}
+<form action="/transfer" method="post">
+    Выберите карту списания
+    <select name="from_card" id="">
+        {% for card in cards %}
+            <option value={{ card.card_id }}>{{ card.card_number }} | {{ card.balance }}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <br>
+    Введите номер карты получателя
+    <input type="number" name="to_card">
+    <br>
+    <br>
+    Сумма
+    <input type="number" name="amount" id="5000">
+    <hr>
+    <button>Перевести</button>
+
+</form>
+</body>
+</html>

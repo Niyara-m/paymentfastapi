@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Convertation</title>
+</head>
+<body>
+<!--Из какой валюты-->
+<select name="" id="currency">
+    <option name="USD">USD</option>
+    <option name="EUR">EUR</option>
+    <option name="RUB">RUB</option>
+</select>
+<!--Место для вывода общей суммы-->
+<p id="total"></p>
+<br>
+<!--Какую суммы-->
+<input type="number" id="amount" required>
+<br>
+<button onclick="converter()">Конвертировать</button>
+
+<!---->
+
+ <!--// Получить значение -->
+<script>
+    async function converter() {
+
+     let currency = document.getElementById('currency').value
+     let amount = document.getElementById('amount').value
+     let total = document.getElementById('total')
+
+     // если заполненно поле
+     if (!amount) {
+        return
+     }
+
+     let response = await fetch('/convert', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({currency: currency, amount: amount})
+     });
+
+     response = await response.json()
+
+    // показываем итоговую сумму
+    total.innerHTML =  response.summa
+     console.log(response)
+    }
+
+</script>
+
+</body>
+</html>
